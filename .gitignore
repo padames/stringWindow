@@ -32,8 +32,10 @@
 *.app
 
 # Eclipse project
-src/.cproject
-src/.project
-src/.settings/language.settings.xml
-src/Default/*
+.cproject
+.project
+.settings/
 .metadata
+/Release/
+/Debug/
+src/Default/*

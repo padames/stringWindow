@@ -2,7 +2,6 @@
 #include <string>
 #include <utility>
 #include <cmath>
-#include <vector>
 #include <set>
 
 using namespace std;
@@ -11,22 +10,46 @@ typedef pair<unsigned int, unsigned int> apath;
 typedef set<apath> candidate_list;
 typedef candidate_list::iterator cl_it;
 
+/**
+ * Checks if all of the individual characters of the string 't' are contained
+ * in the string 's'
+ * @param s the string that should contain all characters of 't' for the result to be true
+ * @param t the string with characters that should be all present in 's' at least once
+ * @return true if all of  the characters of 's' are present in 't', false otherwise
+ */
 bool contains_target_characters( string s, string t) {
 	bool all_found = true;
+	string temp = s;
 	for (auto c: t) {
-		auto result = s.find(c);
+		auto result = temp.find(c);
 		if (string::npos == result){
 			all_found = false;
 			break;
+		}
+		else {
+			temp.erase(result, 1);
 		}
 	}
 	return all_found;
 }
 
-
+/**
+ * Creates a new path and adds it to the set of unique ones, called
+ * the 'candidate_list', if it contains all the characters of the target.
+ * The new path is created by finding the substring within 'os' that starts
+ * at 'i'  and ends at 'j'.
+ * @param i
+ * @param j
+ * @param os
+ * @param target
+ * @param cl
+ * @return true if the range [i,j] in the string 'os' contains all the characters
+ * in 'target' and it was successfully added to 'cl', false if any of these fails
+ */
 bool create_new_window_if(unsigned int i, unsigned int j, string& os, string& target, candidate_list& cl) {
 	bool new_path_found = false;
-	auto t_s = os.substr(i, j);
+	auto t_s = os.substr(i, j-i+1);
+
 	if ( contains_target_characters(t_s, target)) {
 		auto n_pp = std::make_pair(i, j);
 		auto r = cl.emplace(n_pp);
@@ -38,8 +61,16 @@ bool create_new_window_if(unsigned int i, unsigned int j, string& os, string& ta
 	return new_path_found;
 }
 
-
-
+/**
+ * Finds the substring of minimum length that contains the second character array of
+ * <code>strArr</code> in the the first character array of the same argument
+ * <code>strArr</code>.
+ * @param strArr an array of character arrays with at least 2 members.
+ * The first one is the original string where the second string will be searched.
+ * @param arrLength the length of the array of characters given as argument
+ * @return The substring within the first array of characters that contains the
+ * second array regardless of order.
+ */
 string minWindowSubstring(string strArr[], int arrLength) {
 	string result = "";
 
@@ -105,11 +136,17 @@ string minWindowSubstring(string strArr[], int arrLength) {
 
 
 
-
+/**
+ * Entry point function
+ * @param argc the array of pointer to characters containing the executable name,
+ * the string where to look, and the string of characters to look for.
+ * @param argv the number of arguments passed to the executable at run time
+ * @return 0 if no execution errors were found, non-zero  otherwise
+ */
 int main(int argc, char * argv []) {
 
 	if (argc != 3 ) {
-		cout << "Usage: first argument muts be string of n characters, second argument string of m characters, m < n." << endl;
+		cout << "Usage: first argument must be string of n characters, second argument string of m characters, m < n." << endl;
 		exit(0);
 	} else {
 		string a[2] = {argv[1], argv[2]};
@@ -118,7 +155,7 @@ int main(int argc, char * argv []) {
 
 		// keep this function call here
 		int arrLength = sizeof(a) / sizeof(*a);
-		cout << minWindowSubstring(a, arrLength);
+		cout << "Tubstring " << minWindowSubstring(a, arrLength) << " in " << argv[1] << " contains " << argv[2] << endl;
 	}
 	return 0;
 }
