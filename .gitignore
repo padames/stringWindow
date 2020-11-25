@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# Eclipse project
+src/.cproject
+src/.project
+src/.settings/language.settings.xml
+src/Default/*
+.metadata
