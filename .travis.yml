@@ -28,7 +28,7 @@ before_install:
 language: cpp
 
 before_script:
-  - cd watched
+  - cd src
   - mkdir build
   - cd build
   - cmake ..
@@ -37,8 +37,8 @@ script:
   - cmake --build .
 
 after_script:
-#  - cmake --build . --target watched_test
-#  - ./watched_test
+#  - cmake --build . --target utests
+#  - ./utests
 
 # This section installs the necessary dependencies.
 addons:
