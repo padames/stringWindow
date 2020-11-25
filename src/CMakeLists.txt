@@ -34,5 +34,4 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # configure the required compilation units
-# add_library(Watched Watched.cpp)
-# add_library(Observer Observer.cpp)
+add_library(main src/main.cpp)
