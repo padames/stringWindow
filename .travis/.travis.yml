@@ -1,0 +1,59 @@
+matrix:
+  include:
+#    - os: osx
+#      compiler: gcc
+#      env: 
+#        - BUILD_TYPE=Release VERBOSE=1 --enable-cxx CXX_FLAGS="-std=c++11 -Wdeprecated" HOMEBREW_LOGS=~/homebrew-logs HOMEBREW_TEMP=~/homebrew-temp
+#        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+#    - os: osx
+#      compiler:  clang
+#      env: BUILD_TYPE=Release VERBOSE=1 --enable-cxx CXX_FLAGS="-std=c++11 -Wdeprecated" HOMEBREW_LOGS=~/homebrew-logs HOMEBREW_TEMP=~/homebrew-temp
+
+#    - os: osx
+#      osx_image: xcode8
+#      env:
+#        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+    
+    - os: linux
+      dist: bionic
+
+before_install:
+    - eval "${MATRIX_EVAL}"
+
+# Need these for a more recent CMake on Linux
+#sudo: required
+#dist: bionic
+
+
+language: cpp
+
+before_script:
+  - cd watched
+  - mkdir build
+  - cd build
+  - cmake ..
+
+script:
+  - cmake --build .
+
+after_script:
+#  - cmake --build . --target watched_test
+#  - ./watched_test
+
+# This section installs the necessary dependencies.
+addons:
+  apt:
+    packages:
+    - g++
+    - clang
+    update: true
+  homebrew:
+    pac
+kages:
+    - ccache
+    - gcc@4.9
+    - llvm@4
+    update: true
+
+notifications:
+  email: false
