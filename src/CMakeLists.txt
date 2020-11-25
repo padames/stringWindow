@@ -34,4 +34,4 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # configure the required compilation units
-add_library(stringWindow main.cpp)
+add_executable(main main.cpp)
