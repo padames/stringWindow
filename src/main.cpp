@@ -38,11 +38,11 @@ bool contains_target_characters( string s, string t) {
  * the 'candidate_list', if it contains all the characters of the target.
  * The new path is created by finding the substring within 'os' that starts
  * at 'i'  and ends at 'j'.
- * @param i
- * @param j
- * @param os
- * @param target
- * @param cl
+ * @param i starting position of a substring within 'os'
+ * @param j ending position of a substring within 'os'
+ * @param os the original substring where the shortest substring containing 'target' is sought
+ * @param target is the string with characters sought in 'os'
+ * @param cl is a set of unique paths within 'os' that contain the characters of 'target'
  * @return true if the range [i,j] in the string 'os' contains all the characters
  * in 'target' and it was successfully added to 'cl', false if any of these fails
  */
