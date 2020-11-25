@@ -128,7 +128,7 @@ string minWindowSubstring(string strArr[], int arrLength) {
 			result = os.substr(p, m_i);
 		}
 		else {
-			cout << "The original string '" << os << "' does not contain the target substring '" << target << "'" << endl;
+			cout << "The original string \'" << os << "' does not contain the target substring '" << target << "'" << endl;
 		}
 	}
 	return result;
@@ -155,7 +155,8 @@ int main(int argc, char * argv []) {
 
 		// keep this function call here
 		int arrLength = sizeof(a) / sizeof(*a);
-		cout << "Tubstring " << minWindowSubstring(a, arrLength) << " in " << argv[1] << " contains " << argv[2] << endl;
+		auto result = minWindowSubstring(a, arrLength);
+		cout << "The substring '" << result << "' from '" << argv[1] << "' contains '" << argv[2] << "'" << endl;
 	}
 	return 0;
 }
