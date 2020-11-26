@@ -53,8 +53,7 @@ addons:
     - clang
     update: true
   homebrew:
-    pac
-packages:
+    packages:
     - ccache
     - gcc@4.9
     - llvm@4
