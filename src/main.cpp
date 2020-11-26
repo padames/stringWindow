@@ -120,11 +120,17 @@ string minWindowSubstring(string strArr[], int arrLength) {
 			for (auto i = cl.begin(); i != cl.end(); i++ ) {
 				auto len = i->second - i->first + 1;
 				cout << "<" << i->first << ", " << i->second << ">, " << len << endl;
-				if (len >= target.size()) {
+				if ((len >= target.size()) && (len <= m_i)) {
+					cout << "DEBUG: before min 'm_i' is " << m_i << endl;
+					cout << "DEBUG: before min 'len' is " << len << endl;
+					cout << "DEBUG: before min 'p' is " << p << endl;
 					m_i = std::min(m_i, len);
 					p = i->first;
+					cout << "DEBUG: after min 'm_i' is " << m_i << endl;
+					cout << "DEBUG: after min 'p' is " << p << endl;
 				}
 			}
+			cout << "DEBUG: " << p << endl;
 			result = os.substr(p, m_i);
 		}
 		else {
