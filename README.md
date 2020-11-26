@@ -59,3 +59,8 @@ The substring 'aada' from 'aabeaadad' contains 'aaa'
 $ ./stringWindow "aabeaadad" "aaaa"
 The substring 'abeaad' from 'aabeaadad' contains 'aaaa'
 ```
+
+```
+$ ./stringWindow "aghetyqqqsaa" "aaghe"
+The substring 'ghetyqqqsaa' from 'aghetyqqqsaa' contains 'aaghe'
+```
