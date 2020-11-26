@@ -54,9 +54,6 @@ bool create_new_window_if(unsigned int i, unsigned int j, string& os, string& ta
 		auto n_pp = std::make_pair(i, j);
 		auto r = cl.emplace(n_pp);
 		new_path_found = r.second; // true if the new path was inserted in the set, which means it was not a repeated member.
-		if (new_path_found) {
-			cout << "New path found <" << i << ", " << j << ">" << endl;
-		}
 	}
 	return new_path_found;
 }
@@ -92,8 +89,11 @@ string minWindowSubstring(string strArr[], int arrLength) {
 				for (unsigned int pos = 0; pos < os.size(); pos++){
 					if ( *c_i == os[pos]) {
 						for (auto pp = cl.begin(); pp != cl.end(); pp++) {
+							if (pp->first == pos && target.length() == 1) {
+								create_new_window_if(pos, pos, os, target, cl);
+								continue;
+							}
 							if ( (pp->first == pos) || (pp->second == pos) ) {
-								cout << "Found a boundary letter " << *c_i << " in: <" << pp->first << ", " << pp->second << "> continuing ..." << endl;
 								continue;
 							}
 							// there are three cases possible: 'pos' is before first, after second, or between them
@@ -114,23 +114,16 @@ string minWindowSubstring(string strArr[], int arrLength) {
 			}
 			unsigned int m_i = os.size();
 			unsigned int p = 0;
-			cout << "---" << endl;
-			cout << "Summary of paths found" << endl;
-			cout << "---" << endl;
+
 			for (auto i = cl.begin(); i != cl.end(); i++ ) {
 				auto len = i->second - i->first + 1;
-				cout << "<" << i->first << ", " << i->second << ">, " << len << endl;
-				if ((len >= target.size()) && (len <= m_i)) {
-					cout << "DEBUG: before min 'm_i' is " << m_i << endl;
-					cout << "DEBUG: before min 'len' is " << len << endl;
-					cout << "DEBUG: before min 'p' is " << p << endl;
+
+				if ((len >= target.size()) && (len < m_i)) {
 					m_i = std::min(m_i, len);
 					p = i->first;
-					cout << "DEBUG: after min 'm_i' is " << m_i << endl;
-					cout << "DEBUG: after min 'p' is " << p << endl;
+
 				}
 			}
-			cout << "DEBUG: " << p << endl;
 			result = os.substr(p, m_i);
 		}
 		else {
@@ -162,7 +155,9 @@ int main(int argc, char * argv []) {
 		// keep this function call here
 		int arrLength = sizeof(a) / sizeof(*a);
 		auto result = minWindowSubstring(a, arrLength);
-		cout << "The substring '" << result << "' from '" << argv[1] << "' contains '" << argv[2] << "'" << endl;
+		if (result.length() > 0) {
+			cout << "The substring '" << result << "' from '" << argv[1] << "' contains '" << argv[2] << "'" << endl;
+		}
 	}
 	return 0;
 }
