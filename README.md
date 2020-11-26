@@ -2,6 +2,12 @@
 
 Coding exercise from ByteCode
 
+## OS Builds
+
+Platform | Build status
+---------|-------------:
+Ubuntu 18.04 LTS | [![Build Status](https://travis-ci.com/padames/stringWindow.svg?branch=main)](https://travis-ci.org/padames/stringWindow)
+
 ## Summary
 
 Find the smalles substring within the given string such that it contains the target substring in any order.
