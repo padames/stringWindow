@@ -20,7 +20,7 @@ matrix:
 # safelist
 branches:
   only:
-  - master
+  - main
 
 before_install:
     - eval "${MATRIX_EVAL}"
