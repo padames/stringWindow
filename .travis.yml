@@ -54,7 +54,7 @@ addons:
     update: true
   homebrew:
     pac
-kages:
+packages:
     - ccache
     - gcc@4.9
     - llvm@4
