@@ -34,4 +34,4 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # configure the required compilation units
-add_executable(stringWindow main.o)
+add_executable(stringWindow main.pp)
